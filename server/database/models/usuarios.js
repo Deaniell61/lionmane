@@ -1,10 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Usuarios = sequelize.define('Usuarios', {
-    usuario: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     nombre: {
       type: DataTypes.STRING,
       allowNull: true
@@ -23,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      autoIncrement: true
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -36,7 +33,13 @@ module.exports = (sequelize, DataTypes) => {
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
-    }
+    },
+    hash: DataTypes.STRING,
+    salt: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
     freezeTableName: true,
     tableName: "Usuarios"
@@ -44,8 +47,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Usuarios.associate = models => {
     // One to Many relations
-    Usuarios.hasMany(models.FavoritosUsuarios, { as: "FavoritosUsuarios", foreignKey: { name: "usuarioId", field: "usuarioId", allowNull: true } });
-    Usuarios.hasMany(models.ConsultasUsuarios, { as: "ConsultasUsuarios", foreignKey: { name: "usuarioId", field: "usuarioId", allowNull: true } });
+    Usuarios.hasMany(models.FavoritosUsuarios, { as: "Favoritos", foreignKey: { name: "usuarioId", field: "usuarioId", allowNull: true } });
+    Usuarios.hasMany(models.ConsultasUsuarios, { as: "Consultas", foreignKey: { name: "usuarioId", field: "usuarioId", allowNull: true } });
   }
   return Usuarios;
 };
