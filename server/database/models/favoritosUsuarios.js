@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  let ConsultasUsuarios = sequelize.define("ConsultasUsuarios", {
+  var FavoritosUsuarios = sequelize.define('FavoritosUsuarios', {
     usuarioId: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -9,18 +9,18 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: false
+      autoIncrement: true
     },
-    raza: {
+    subRazaId: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     estado: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: true
     },
     updatedAt: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.DATE,
       allowNull: true,
     },
     createdAt: {
@@ -30,12 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     freezeTableName: true,
-    tableName: "UsuariosFavoritos"
+    tableName: "FavoritosUsuarios"
   });
 
-  ConsultasUsuarios.associate = models => {
-    ConsultasUsuarios.belongsTo(models.Usuarios, { as: "Usuario", foreignKey: { name: "usuarioId", field: "usuarioId", allowNull: true } });
-  };
-
-  return ConsultasUsuarios;
+  return FavoritosUsuarios;
 }
