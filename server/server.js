@@ -33,9 +33,9 @@ const Logger = require('bucker').createLogger({
 */
 const start = (host, port) => {
 
-  console.log(`${config.get('/db/database')}\n${config.get('/db/username')}\n${config.get('/db/password')}\n${config.get('/db/host')}`);
+  //console.log(`${config.get('/db/database')}\n${config.get('/db/username')}\n${config.get('/db/password')}\n${config.get('/db/host')}`);
 
-  return new Promise( (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     /**
      * Create the Server
      */
@@ -80,9 +80,8 @@ const start = (host, port) => {
       path: [
         '/',
         '/login',
-        '/app/login',
-        '/app/registro',
-        /\/app\/recovery\/.*/,
+        '/registro',
+        /\/recovery\/.*/,
       ]
     }))
 
@@ -96,7 +95,7 @@ const start = (host, port) => {
      * Connect to Database
      */
     SQ.authenticate().then(() => {
-    Logger.log('Connecte to Database <3')
+      Logger.log('Connecte to Database <3')
       models.sequelize.sync({});
       /**
        * Start the Server

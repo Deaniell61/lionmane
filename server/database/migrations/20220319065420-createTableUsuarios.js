@@ -1,13 +1,16 @@
 'use strict';
+const _bcrypt = require('bcryptjs')
+const _saltRounds = 10
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.createTable(
+    return queryInterface.createTable(
       'Usuarios',
       {
         id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
+          allowNull: false,
           autoIncrement: true
         },
         createdAt: {
@@ -16,10 +19,15 @@ module.exports = {
         updatedAt: {
           type: Sequelize.DATE
         },
-        usuario: Sequelize.STRING,
+        hash: Sequelize.STRING,
+        salt: Sequelize.STRING,
+        username: {
+          type: Sequelize.STRING,
+          allowNull: false
+        },
         nombre: Sequelize.STRING,
         apellido: Sequelize.STRING,
-        email: Sequelize.INTEGER,
+        email: Sequelize.STRING,
         estado: {
           type: Sequelize.BOOLEAN,
           defaultValue: true,
@@ -27,8 +35,9 @@ module.exports = {
         }
       },
       {
-        engine: 'InnoDB',    // default: 'InnoDB'
-        collate: 'latin1_danish_ci' // collation, MYSQL only
+        engine: 'InnoDB',     // default: 'InnoDB'
+        collate: 'latin1_danish_ci', // collation, MYSQL only
+        initialAutoIncrement: 1
       }
     )
   },

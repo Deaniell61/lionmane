@@ -2,11 +2,12 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.createTable(
+    return queryInterface.createTable(
       'FavoritosUsuarios',
       {
         id: {
           type: Sequelize.INTEGER,
+          allowNull: false,
           primaryKey: true,
           autoIncrement: true
         },
@@ -15,6 +16,12 @@ module.exports = {
           type: Sequelize.BOOLEAN,
           defaultValue: true,
           allowNull: false
+        },
+        createdAt: {
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          type: Sequelize.DATE
         },
         //foreign key usage
         usuarioId: {
@@ -29,7 +36,8 @@ module.exports = {
       },
       {
         engine: 'InnoDB',    // default: 'InnoDB'
-        collate: 'latin1_danish_ci' // collation, MYSQL only
+        collate: 'latin1_danish_ci', // collation, MYSQL only
+        initialAutoIncrement: 1
       }
     )
   },

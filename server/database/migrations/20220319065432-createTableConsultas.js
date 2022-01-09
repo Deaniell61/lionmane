@@ -7,6 +7,7 @@ module.exports = {
       {
         id: {
           type: Sequelize.INTEGER,
+          allowNull: false,
           primaryKey: true,
           autoIncrement: true
         },
@@ -29,9 +30,18 @@ module.exports = {
       },
       {
         engine: 'InnoDB',    // default: 'InnoDB'
-        collate: 'latin1_danish_ci' // collation, MYSQL only
+        collate: 'latin1_danish_ci', // collation, MYSQL only
+        initialAutoIncrement: 1
       }
     )
+    return queryInterface.changeColumn(
+      'ConsultasUsuarios',
+      'id',
+      {
+        allowNull: false,
+        autoIncrement: true
+      }
+    );
   },
 
   down: (queryInterface, Sequelize) => {
