@@ -2,16 +2,6 @@
 const _errors = require('restify-errors')
 const FavoritosUsuarios = require('../database/models').FavoritosUsuarios
 
-const getAll = (request, response, next) => {
-  FavoritosUsuarios.findAll().then( items => {
-    response.send(items);
-  })
-  .catch( err => {
-    response.send(new _errors.BadGatewayError(err))
-  })
-  next()
-}
-
 const getOne = (request, response, next) => {
   FavoritosUsuarios.findById(request.params.id).then( item => {
     if(item)
@@ -38,30 +28,6 @@ const storeObject = (request, response, next) => {
     response.send(item);
   }).catch(err => {
     response.send(new _errors.BadGatewayError(err));
-  })
-  next()
-}
-
-const updateObject = (request, response, next) => {
-  FavoritosUsuarios.update({
-    descripcion: request.body.descripcion,
-    estado: request.body.estado
-  },{where: {id: request.params.id}})
-  .then( _id => {
-    return FavoritosUsuarios.findById(request.params.id)
-  })
-  .then(item => {
-    if(item)
-      response.send(item)
-    else
-      return Promise.reject({name: 'notFound', message: 'Record not Found'})
-  })
-  .catch( err => {
-    if(err.name === 'notFound') {
-      response.send(new _errors.NotFoundError(err.message))
-    } else {
-      response.send(new _errors.BadGatewayError(err))
-    }
   })
   next()
 }
@@ -93,9 +59,7 @@ const deleteObject = (request, response, next) => {
 }
 
 module.exports = {
-  all: getAll,
   one: getOne,
   store: storeObject,
-  update: updateObject,
   delete: deleteObject
 }
