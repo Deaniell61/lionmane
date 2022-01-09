@@ -1,21 +1,28 @@
-version: '2' # specify docker-compose version
-# Define the services/containers to be run
+version: "2"
 services:
-  frontend: #name of the first service
-    build: ../frontend # specify the directory of the Dockerfile
+  frontend:
+    build: ../frontend
+    expose:
+      - 4200
     ports:
-      - "4200:4200" # specify port forewarding
+      - "4200:4200"
     container_name: front-container
     restart: always
-  backend: #name of the second service
-    build: ./ # specify the directory of the Dockerfile
+  backend:
+    build: ./
+    expose:
+      - 8000
     ports:
-      - "3000:3000" #specify ports forewarding
+      - "8000:8000"
     container_name: back-container
     restart: always
     links:
-      - database # link this service to the database service
-  database: # name of the third service
-    build: ./server/database # specify the directory of the Dockerfile
-    container_name: database-container
+      - database
+  database:
+    build: ./server/database
+    container_name: database
+    expose:
+      - 3306
+    ports:
+      - "3306:3306"
     restart: always

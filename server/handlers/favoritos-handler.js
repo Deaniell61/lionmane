@@ -3,15 +3,16 @@ const _errors = require('restify-errors')
 const FavoritosUsuarios = require('../database/models').FavoritosUsuarios
 
 const getOne = (request, response, next) => {
-  FavoritosUsuarios.findById(request.params.id).then( item => {
-    if(item)
-      response.send(item)
-    else
-      response.send(new _errors.NotFoundError('Record not Found'))
+  FavoritosUsuarios.findAll({
+    where: {
+      usuarioId: request.params.id,
+    }
+  }).then(items => {
+    response.send(items);
   })
-  .catch(err => {
-    response.send(new _errors.BadGatewayError(err))
-  })
+    .catch(err => {
+      response.send(new _errors.BadGatewayError(err))
+    })
   next()
 }
 const storeObject = (request, response, next) => {
@@ -35,26 +36,26 @@ const storeObject = (request, response, next) => {
 const deleteObject = (request, response, next) => {
   let _item = null
   FavoritosUsuarios.findById(request.params.id)
-  .then( item => {
-    if(item) {
-      _item = item
-      return FavoritosUsuarios.destroy({
-        where: {id: item.id}
-      })
-    } else{
-      return Promise.reject({name: 'notFound', message: 'Record not Found'})
-    }
-  })
-  .then( deleted => {
-    response.send(_item)
-  })
-  .catch( err => {
-    if(err.name === 'notFound') {
-      response.send(new _errors.NotFoundError(err.message))
-    } else {
-      response.send(new _errors.BadGatewayError(err))
-    }
-  })
+    .then(item => {
+      if (item) {
+        _item = item
+        return FavoritosUsuarios.destroy({
+          where: { id: item.id }
+        })
+      } else {
+        return Promise.reject({ name: 'notFound', message: 'Record not Found' })
+      }
+    })
+    .then(deleted => {
+      response.send(_item)
+    })
+    .catch(err => {
+      if (err.name === 'notFound') {
+        response.send(new _errors.NotFoundError(err.message))
+      } else {
+        response.send(new _errors.BadGatewayError(err))
+      }
+    })
   next()
 }
 

@@ -3,7 +3,7 @@ module.exports = {
     "username": "root",
     "password": "1234",
     "database": "lionmane",
-    "host": "localhost",
+    "host": "database",
     "dialect": "mysql",
     "logging": true
   },
@@ -11,7 +11,7 @@ module.exports = {
     "username": "root",
     "password": "1234",
     "database": "lionmane",
-    "host": "localhost",
+    "host": "database",
     "dialect": "mysql",
     "logging": true
   },
@@ -19,7 +19,7 @@ module.exports = {
     "username": 'database_test',
     "password": null,
     "database": 'database_test',
-    "host": 'localhost',
+    "host": 'database',
     "dialect": 'mysql',
     "logging": true
   },

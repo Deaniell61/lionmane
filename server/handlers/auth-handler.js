@@ -35,7 +35,7 @@ const doLogin = (request, response, next) => {
 
 const generateToken = (item) => {
   let jwt_user = {
-    id: item.id,
+    id: item.id ? item.id : 1,
     email: item.email,
     username: item.username,
   }

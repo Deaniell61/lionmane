@@ -33,10 +33,37 @@ ENV DB_DATABASE=${DB_DATABASE}
 ARG LOGGER_DEBUG
 ENV LOGGER_DEBUG=${LOGGER_DEBUG}
 
-RUN mkdir -p /usr/src/app
+RUN apk add --no-cache --virtual .gyp \
+        python \
+        make \
+        g++ \
+        gcc \
+    && npm install \
+        npm install --production --silent && \
+        apk del python \
+        make \
+        g++ \
+        gcc \
+    && apk del .gyp
+
+
+# Create app directory
 WORKDIR /usr/src/app
-COPY package.json /usr/src/app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
 RUN npm install
-COPY . /usr/src/app
-EXPOSE 3000
+# If you are building your code for production
+# RUN npm install --only=production
+
+# Bundle app source
+COPY . .
+COPY server/database/migrate.sh ./server/database/migrate.sh
+RUN cd ./server/database
+RUN cd ../../
+
+EXPOSE 8000
 CMD ["npm", "start"]
