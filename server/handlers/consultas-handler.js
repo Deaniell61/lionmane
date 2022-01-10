@@ -4,8 +4,9 @@ const ConsultasUsuarios = require('../database/models').ConsultasUsuarios
 const reques = require('request');
 
 const getAll = (request, response, next) => {
-  reques('https://dog.ceo/api/breeds/list/all', { json: true }, (err, res, body) => {
+  reques('https://dog.ceo/api/breeds/list', { json: true }, (err, res, body) => {
     if (err) { response.send(new _errors.BadGatewayError(err)) }
+
     response.send(body);
   });
   next()
@@ -28,7 +29,7 @@ const getOne = (request, response, next) => {
     }).then(async item => {
       const _item = {
         ...item.toJSON(),
-        consultas: [body]
+        consulta: body.message
       };
       response.send(_item);
     }).catch(err => {

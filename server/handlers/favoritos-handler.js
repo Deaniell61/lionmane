@@ -1,7 +1,14 @@
 'use strict'
 const _errors = require('restify-errors')
 const FavoritosUsuarios = require('../database/models').FavoritosUsuarios
-
+const getAll = (request, response, next) => {
+  FavoritosUsuarios.findAll().then(items => {
+    response.send(items);
+  })
+    .catch(err => {
+      response.send(new _errors.BadGatewayError(err))
+    })
+}
 const getOne = (request, response, next) => {
   FavoritosUsuarios.findAll({
     where: {
@@ -20,8 +27,17 @@ const storeObject = (request, response, next) => {
     response.send(new _errors.NotFoundError('Record not Found'))
     return Promise.reject({ name: 'NoRecord', message: 'No Record Exist' })
   }
+  if (!request.body.subRaza || request.body.subRaza == '') {
+    response.send(new _errors.NotFoundError('Record not Found'))
+    return Promise.reject({ name: 'NoRecord', message: 'No Record Exist' })
+  }
+  if (!request.body.id || request.body.id == '') {
+    response.send(new _errors.NotFoundError('Record not Found'))
+    return Promise.reject({ name: 'NoRecord', message: 'No Record Exist' })
+  }
   FavoritosUsuarios.create({
-    subRazaId: request.body.raza,
+    subRazaId: request.body.subRaza,
+    razaId: request.body.raza,
     estado: true,
     usuarioId: request.body.id,
     createdAt: new Date()
@@ -60,6 +76,7 @@ const deleteObject = (request, response, next) => {
 }
 
 module.exports = {
+  all: getAll,
   one: getOne,
   store: storeObject,
   delete: deleteObject

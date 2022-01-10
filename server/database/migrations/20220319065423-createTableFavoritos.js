@@ -12,6 +12,7 @@ module.exports = {
           autoIncrement: true
         },
         subRazaId: Sequelize.STRING,
+        razaId: Sequelize.STRING,
         estado: {
           type: Sequelize.BOOLEAN,
           defaultValue: true,

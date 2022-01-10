@@ -12,13 +12,13 @@ const config = {
   author: pack.author,
   app: {
     name: process.env.APP_NAME || 'ExpressBaseline',
-    host: process.env.APP_HOST || 'localhost',
+    host: process.env.APP_HOST || '0.0.0.0',
     port: process.env.APP_PORT || '8000',
     env: process.env.APP_ENV || 'development',
     secret: process.env.APP_SECRET || 'lionmane2022'
   },
   db: {
-    host: process.env.DB_HOST || 'localhost',
+    host: process.env.DB_HOST || 'database',
     port: process.env.DB_PORT || '3306',
     username: process.env.DB_USERNAME || 'root',
     password: process.env.DB_PASSWORD || '1234',

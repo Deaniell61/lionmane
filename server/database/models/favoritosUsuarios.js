@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    razaId: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: true

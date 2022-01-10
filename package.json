@@ -4,9 +4,9 @@
   "description": "LionMane Services Project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "star-local": "nodemon -r dotenv/config index.js",
-    "local-start": "nodemon -r dotenv/config index.js",
+    "start": "node index.js",
+    "star-local": "node -r dotenv/config index.js",
+    "local-start": "node -r dotenv/config index.js",
     "clean:install": "rm -rf node_modules && npm install"
   },
   "author": {

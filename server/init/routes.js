@@ -27,6 +27,7 @@ routerInstance.post('/consultas/imagenes', handlers.consultas.pictures)
 /**
  * Usuarios
  */
+routerInstance.get('/favoritos', handlers.favoritos.all)
 routerInstance.get('/favoritos/:id', handlers.favoritos.one)
 routerInstance.post('/favoritos', handlers.favoritos.store)
 routerInstance.del('/favoritos/:id', handlers.favoritos.delete)
