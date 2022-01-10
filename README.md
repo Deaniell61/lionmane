@@ -30,7 +30,7 @@ nodejs v => 8
 docker v => latest
 ```
 ## Uso
-
+Para poder probar la aplicacion es necesario clonar el repositorio y levantar los contenedores contenidos en el archivo [docker-compose.yml](https://docs.docker.com/compose/compose-file/)
 ```bash
 > docker-compose up --build
 ```
