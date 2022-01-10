@@ -12,6 +12,7 @@ export class SlidersComponent implements OnInit {
   private _imagen: Imagen;
   private _sliders: Imagen[];
   private _esAdmin: boolean;
+  @Input() principal: boolean = true;
   constructor() { }
   ngOnInit(): void { }
   handleRefusal(value: any) {

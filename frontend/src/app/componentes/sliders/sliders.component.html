@@ -1,7 +1,7 @@
 <ngb-carousel *ngIf="sliders" [keyboard]="true" [interval]="sliders.length<=1?9000:5000" [pauseOnHover]="true"
   [wrap]="sliders.length>=1">
   <ng-template ngbSlide *ngFor="let data of sliders">
-    <div class="w-100 text-center">
+    <div class="w-100 text-center" [class.bg-dark]="principal">
       <img loading="lazy" [src]="data.url" alt="{{data.titulo}}" title="{{data.titulo}}" class="mx-auto sliders">
       <div class="carousel-caption">
         <h3>{{data.titulo}}</h3>

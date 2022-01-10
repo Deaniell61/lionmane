@@ -3,7 +3,7 @@
     <button type="button" class="btn btn-danger form-control" (click)="reiniciarImagen()"> <i class="fa fa-times"> Cancelar</i> </button>
   </div>
 </div>
-<app-sliders [sliders]="sliders"></app-sliders>
+<app-sliders [sliders]="sliders" [principal]="estaSelec"></app-sliders>
 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" [class.d-none]="!sesion">
   <li [ngbNavItem]="1">
     <a ngbNavLink>Favoritos</a>
