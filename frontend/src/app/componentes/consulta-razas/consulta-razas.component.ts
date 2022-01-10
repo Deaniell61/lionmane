@@ -38,6 +38,7 @@ export class ConsultaRazasComponent implements OnInit {
   async consultarRaza(value: string) {
     this.listaSub.length = 0;
     this.blockUI.start();
+    await this.cargarFavoritos();
     await this.consultasService.getSubRazas(value, this.mySesion.perfil.id).then((response: {
       id: number, raza: string, estado: boolean, usuarioId: number, createdAt: Date, consulta: string[]
     }) => {
@@ -58,9 +59,9 @@ export class ConsultaRazasComponent implements OnInit {
     this._seleccionado = value;
     this._seleccionarRaza.emit(this._seleccionado);
   }
-  cargarFavoritos() {
+  async cargarFavoritos() {
     this.listaFavs.length = 0;
-    this.favoritosService.getSingle(this.mySesion.perfil.id).then((response: Favorito[]) => {
+    await this.favoritosService.getSingle(this.mySesion.perfil.id).then((response: Favorito[]) => {
       this.listaFavs = response;
     }).catch(error => {
       console.log(error);
@@ -101,7 +102,6 @@ export class ConsultaRazasComponent implements OnInit {
   }
 
   isFav(subRaza: string) {
-    this.cargarFavoritos();
     if (this.listaFavs.length > 0) {
       const fav = this.listaFavs.find(element => element.subRazaId === subRaza);
       if (fav) {
