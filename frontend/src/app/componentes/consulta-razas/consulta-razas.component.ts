@@ -101,6 +101,7 @@ export class ConsultaRazasComponent implements OnInit {
   }
 
   isFav(subRaza: string) {
+    this.cargarFavoritos();
     if (this.listaFavs.length > 0) {
       const fav = this.listaFavs.find(element => element.subRazaId === subRaza);
       if (fav) {
@@ -108,9 +109,6 @@ export class ConsultaRazasComponent implements OnInit {
       } else {
         return 0;
       }
-    } else {
-      this.cargarFavoritos();
-      this.isFav(subRaza);
     }
   }
 

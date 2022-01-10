@@ -148,7 +148,6 @@ export class RegisterComponent implements OnInit {
   }
   registrar(social: boolean = false) {
     this.blockUI.start();
-    console.log(this._perfil);
     const perfil = {
       email: this._perfil.email,
       hash: this._perfil.hash,
