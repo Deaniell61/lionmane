@@ -7,9 +7,9 @@
       <ngb-alert [dismissible]="false" *ngFor="let dataSub of listaSub; let j=index" class="pointer" (click)="seleccionar(dataSub)">
         <strong>{{dataSub.nombre}}</strong>
         <span class="float-right">
-          <small class="text-muted col-xs-12 col-sm-12 col-md-12">
-              <ngb-rating class="mx-auto" max="1" [readonly]="dataSub.validacion" [(rate)]="dataSub.validacion" (click)="agregarFavoritos(data.nombre,dataSub.nombre)"></ngb-rating>
-            </small>
+          <span class="text-muted col-xs-12 col-sm-12 col-md-12">
+              <ngb-rating class="mx-auto" max="1" [readonly]="dataSub.validacion" [(rate)]="dataSub.validacion" (click)="agregarFavoritos(data.nombre,dataSub.nombre)" title="Agregar a Favoritos"></ngb-rating>
+            </span>
         </span>
       </ngb-alert>
       <ngb-alert [dismissible]="false" *ngIf="listaSub.length == 0">

@@ -1,11 +1,24 @@
-# ExpressBaseline
+# LionMane
+El documento base de la prueba de encuentra adjunto en este repositorio.
 
-ExpressBaseline para utilizar en la generación de microservicios.
+El
+propósito de esta aplicación será para explorar las diferentes razas de perros que nos
+proveen un API.
 
-## Empezando
+Se utiliza el API que se indico para obtener la información de las
+diferentes razas de perros. Se desarrollo la aplicación
+utilizando Angular y Node con Typescript.
 
-Estas instrucciones le permitirán obtener una copia del proyecto en funcionamiento en su máquina local para fines de desarrollo y prueba. Consulte la implementación para obtener notas sobre cómo implementar el proyecto en un sistema en vivo.
+Para obtener la información de las razas y sub-razas de perros, se utilizo el siguiente
+API: 
+[https://dog.ceo/dog-api/documentation](https://dog.ceo/dog-api/documentation)
 
+Este API categoriza los perros en razas (por ejemplo, Hound) y luego por sub-razas
+(por ejemplo, Afghan Hound, English Foxhound, etc). Es importante preservar esta
+jerarquía y mostrar las razas y sub-razas de perros estructuradamente..
+
+## Installación
+La aplicacion esta encapsulada pasa ser usada con [docker-compose](https://docs.docker.com/compose/) por lo que es necesario tener instalada la ultima version de [Docker](https://www.docker.com/products/docker-desktop), asi como tambien [Node.js](https://nodejs.org/es/download/) para asegurarnos que los deployments se hagan de manera correcta.
 ### Prerequisitos
 
 Qué cosas necesitas para instalar el software y cómo instalarlas
@@ -13,51 +26,21 @@ Qué cosas necesitas para instalar el software y cómo instalarlas
 ```
 nodejs v => 8
 ```
-
-### Instalación
-
-Una serie de ejemplos paso a paso que indican que debe ejecutar un entorno de desarrollo
-
-Instalar las dependencias
-
 ```
-npm install
+docker v => latest
 ```
+## Uso
 
-Renombrar el archivo .env.example a .env y modificar las variables de entorno locales
+```bash
+> docker-compose up --build
+```
+Los archivos Dockerfile estan configurados para levantarse en orden de dependencia, en las siguiente rutas [Backend](http://localhost:8000), [Frontend](http://localhost:4200) y [Base de Datos](http://localhost:3306)
 
-```
-APP_NAME=ExpressBaseline
-APP_HOST=localhost
-APP_PORT=8080
-APP_ENV=development
-DB_HOST=localhost
-DB_PORT=3306
-DB_USERNAME=root
-DB_PASSWORD=admin
-DB_DATABASE=lionmane
-LOGGER_DEBUG=true
-```
+## Agradecimiento
+De ante mano agradezco el interes en mi perfil, espero cumplir las espectativas del puesto.
 
-Instalar las migraciones
-
-```
-cd server/database
-../../node_modules/.bin/sequelize db:migrate
-```
-
-Correr el proyecto
-
-```
-npm start
-```
-
-Al iniciar debe de mostrar en consola
-
-```
-ExpressBaseline.info: Connecte to Database <3
-ExpressBaseline.info: Server running at: http://127.0.0.1:8080
-```
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Autores
 
