@@ -1,0 +1,64 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 mx-auto text-left ">
+  <form class="form-signin" autocomplete="off" id="RegisterForm" #RegisterForm="ngForm" (ngSubmit)="registrar()">
+    <h1 class="h3 mb-3 mt-3 font-weight-normal text-dark" *ngIf="titulo && muestraTexto">{{titulo}}</h1>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <input type="hidden" class="form-control" name="id" id="id" *ngIf="_perfil" [(ngModel)]="_perfil.id" ngModel
+          #id="ngModel">
+        <div class="input-group mb-1">
+          <input type="email" class="form-control" name="email" id="email" [disabled]="userAcepted" required ngModel
+            #email="ngModel" [(ngModel)]="_perfil.email" placeholder="Correo" email>
+        </div>
+        <div class="input-group mb-1">
+          <input type="password" class="form-control" name="hash" id="hash" [disabled]="userAcepted" required ngModel
+            #hash="ngModel" placeholder="Contraseña" [(ngModel)]="_perfil.hash">
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="hash_rep" id="hash_rep" [disabled]="userAcepted" required
+            ngModel #hash_rep="ngModel" placeholder="Repite tu contraseña" [(ngModel)]="_perfil.hash_rep">
+        </div>
+        <div *ngIf="(_perfil.hash && _perfil.hash_rep) && (_perfil.hash_rep!='' || _perfil.hash!='') && (mostrarNotificacion)">
+          <div class="alert alert-success" *ngIf="(_perfil.hash==_perfil.hash_rep) && (_perfil.hash_rep && _perfil.hash)">
+            <strong>Tu contraseña es valida <i class="fa fa-check"></i></strong>
+          </div>
+          <div class="alert alert-danger" *ngIf="(_perfil.hash!=_perfil.hash_rep) && (_perfil.hash_rep && _perfil.hash)">
+            <strong>Tus contraseñas Deben ser iguales <i class="fa fa-exit"></i></strong>
+            <strong *ngIf="_perfil.hash.length<3">Tus contraseñas Deben tener mas de 3 caracteres <i
+                class="fa fa-exit"></i></strong>
+          </div>
+        </div>
+        <button class=" btn btn-lg btn-danger btn-block w-50 mr-auto" type="button" *ngIf="userAcepted"
+          (click)="cancelar(false,RegisterForm)"><i class="fa fa-times"></i> Cancelar</button>
+        <button class=" btn btn-lg btn-primary btn-block w-50 ml-auto" type="button"
+          [disabled]="(email && _perfil.hash_rep && _perfil.hash) && (email.value=='' || _perfil.hash_rep=='' || _perfil.hash=='') || RegisterForm.invalid"
+          *ngIf="!userAcepted" (click)="aceptarUsuario((_perfil.hash==_perfil.hash_rep),RegisterForm)"><i
+            class="fa fa-check"></i> Aceptar</button>
+        <h5 class="h5 mb-3 mt-3 font-weight-normal text-dark" *ngIf="userAcepted">Ingrese su información.</h5>
+        <div class="input-group mb-1" [class.d-none]="!userAcepted">
+          <input type="text" class="form-control" name="nombre" id="nombre" [disabled]="!userAcepted" required ngModel
+            #nombre="ngModel" placeholder="Nombre" nombre [(ngModel)]="_perfil.nombre">
+        </div>
+        <div class="input-group mb-1" [class.d-none]="!userAcepted">
+          <input type="text" class="form-control" name="apellido" id="apellido" [disabled]="!userAcepted" required
+            ngModel #apellido="ngModel" placeholder="Apellido" apellido [(ngModel)]="_perfil.apellido">
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-6 ml-auto text-left">
+        <a class="c-celeste-bishound pointer link-pointer"
+          (click)="navegar({url:'./../login',nombre:''},$event)">Entrar</a>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 mr-auto text-right">
+        <a class="pointer link-pointer" (click)="navegar({url:'./../recovery',nombre:''},$event)">Recuperar
+          Contraseña</a>
+      </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" *ngIf="userAcepted"><i class="fa fa-sign-in"></i>
+      Registrar</button>
+  </form>
+</div>
+
+<!-- Inicio Notificaciones -->
+<simple-notifications [options]="options"></simple-notifications>
+<!-- Fin Notificaciones -->

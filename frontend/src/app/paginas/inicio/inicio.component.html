@@ -1,0 +1,17 @@
+<div class="row" *ngIf="estaSelec">
+  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 mx-auto mb-3">
+    <button type="button" class="btn btn-danger form-control" (click)="reiniciarImagen()"> <i class="fa fa-times"> Cancelar</i> </button>
+  </div>
+</div>
+<app-sliders [sliders]="sliders"></app-sliders>
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" [class.d-none]="!sesion">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Favoritos</a>
+    <ng-template ngbNavContent class="w-100 d-flex">
+      <app-galeria class="w-100" [lista]="listaFavs" titulo="Favoritos" [page]="page" [numReg]="numReg" [size]="limit"
+        (paginaActual)="cambioPagina($event)" (seleccionarRaza)="seleccionarRaza($event)" [class.d-none]="!sesion">
+      </app-galeria>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav" class="w-100 d-flex" [class.d-none]="!sesion"></div>

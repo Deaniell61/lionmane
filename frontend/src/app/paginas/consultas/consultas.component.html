@@ -1,0 +1,10 @@
+<app-sliders [sliders]="sliders"></app-sliders>
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" [class.d-none]="!sesion">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Razas de Perros</a>
+    <ng-template ngbNavContent class="w-75 d-flex">
+      <app-consulta-razas [lista]="listaPerros" (seleccionarRaza)="seleccionarRaza($event)"></app-consulta-razas>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav" class="w-100 d-flex" [class.d-none]="!sesion"></div>
