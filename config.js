@@ -12,7 +12,7 @@ const config = {
   author: pack.author,
   app: {
     name: process.env.APP_NAME || 'ExpressBaseline',
-    host: process.env.APP_HOST || 'localhost',
+    host: process.env.APP_HOST || '0.0.0.0',
     port: process.env.APP_PORT || '8000',
     env: process.env.APP_ENV || 'development',
     secret: process.env.APP_SECRET || 'lionmane2022'
