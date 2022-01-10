@@ -4,13 +4,21 @@
       <span (click)="consultarRaza(data.nombre)"> <b>{{data.nombre}}</b> </span>
     </ng-template>
     <ng-template ngbPanelContent>
-      <ngb-alert [dismissible]="false" *ngFor="let dataSub of listaSub; let j=index" class="pointer" (click)="seleccionar(dataSub)">
-        <strong>{{dataSub.nombre}}</strong>
-        <span class="float-right">
-          <span class="text-muted col-xs-12 col-sm-12 col-md-12">
-              <ngb-rating class="mx-auto" max="1" [readonly]="dataSub.validacion" [(rate)]="dataSub.validacion" (click)="agregarFavoritos(data.nombre,dataSub.nombre)" title="Agregar a Favoritos"></ngb-rating>
-            </span>
-        </span>
+      <ngb-alert [dismissible]="false" *ngFor="let dataSub of listaSub; let j=index" class="pointer row"
+        (click)="seleccionar(dataSub)">
+        <div *ngIf="dataSub.imagenes && dataSub.imagenes.length>0"
+          class="containers col-xs-2 col-sm-2 col-md-2 col-lg-2 d-flex">
+          <img [src]="dataSub.imagenes[0].url" alt="{{dataSub.nombre}}" class="mx-auto sliders h-100 w-auto">
+        </div>
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-left">
+          <strong>{{dataSub.nombre}}</strong>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <span class="text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12 float-right">
+            <ngb-rating class="mx-auto" max="1" [readonly]="dataSub.validacion" [(rate)]="dataSub.validacion"
+              (click)="agregarFavoritos(data.nombre,dataSub.nombre)" title="Agregar a Favoritos"></ngb-rating>
+          </span>
+        </div>
       </ngb-alert>
       <ngb-alert [dismissible]="false" *ngIf="listaSub.length == 0">
         <strong>No Existe Sub Razas Aun</strong>

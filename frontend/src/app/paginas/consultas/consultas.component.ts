@@ -57,6 +57,12 @@ export class ConsultasComponent implements OnInit {
   get perro(): ListaBusqueda {
     return this._perro;
   }
+  set titulo(value: string) {
+    this._titulo = value;
+  }
+  get titulo(): string {
+    return this._titulo;
+  }
   get sesion() {
     return this.mySesion.validarSesion();
   }
@@ -66,6 +72,7 @@ export class ConsultasComponent implements OnInit {
   private _limit = 10;
   private _offset = 0;
   private _page = 1;
+  private _titulo = '';
   active = 1;
   sliders = [];
   private _listaPerros: ListaBusqueda[] = [
@@ -122,6 +129,7 @@ export class ConsultasComponent implements OnInit {
     this.cargarFavoritos();
   }
   seleccionarRaza(value: ListaBusqueda) {
+    this.titulo = value.nombre;
     if (value.imagenes.length > 0) {
       this.sliders = value.imagenes;
       $('html, body').animate({ scrollTop: 0 }, '300');
