@@ -17,7 +17,7 @@ Este API categoriza los perros en razas (por ejemplo, Hound) y luego por sub-raz
 (por ejemplo, Afghan Hound, English Foxhound, etc). Es importante preservar esta
 jerarquía y mostrar las razas y sub-razas de perros estructuradamente..
 
-## Installación
+## Instalación
 La aplicacion esta encapsulada pasa ser usada con [docker-compose](https://docs.docker.com/compose/) por lo que es necesario tener instalada la ultima version de [Docker](https://www.docker.com/products/docker-desktop), asi como tambien [Node.js](https://nodejs.org/es/download/) para asegurarnos que los deployments se hagan de manera correcta.
 ### Prerequisitos
 
@@ -34,7 +34,9 @@ Para poder probar la aplicacion es necesario clonar el repositorio y levantar lo
 ```bash
 > docker-compose up --build
 ```
-Los archivos Dockerfile estan configurados para levantarse en orden de dependencia, en las siguiente rutas [Backend](http://localhost:8000), [Frontend](http://localhost:4200) y [Base de Datos](http://localhost:3306)
+Los archivos Dockerfile estan configurados para levantarse en orden de dependencia, en las siguiente rutas [Backend](http://localhost:8000), [Frontend](http://localhost:4200) y [Base de Datos](http://localhost:3306).
+
+Para visualizar la aplicacion abra la direccion [http://localhost:4200](http://localhost:4200) en su navegador.
 
 ## Agradecimiento
 De ante mano agradezco el interes en mi perfil, espero cumplir las espectativas del puesto.

@@ -26,5 +26,6 @@
 
 </div>
 <div class="row w-100 mb-4 mx-auto" *ngIf="lista.length<=0">
-  <ngb-alert class="w-50 mx-auto mt-3" type="danger">No se encuentran favoritos para mostrar aun, seleccione algunos <b><a (click)="navegar({url:'./../consultas',nombre:''},$event)"> aqui</a></b>.</ngb-alert>
+  <ngb-alert class="w-50 mx-auto mt-3" type="danger">No se encuentran favoritos para mostrar aun, seleccione algunos <a
+      class="pointer" (click)="navegar({url:'./../consultas',nombre:''},$event)"><b>aqui</b></a>.</ngb-alert>
 </div>
