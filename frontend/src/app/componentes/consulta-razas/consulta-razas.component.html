@@ -1,22 +1,26 @@
 <ngb-accordion [closeOthers]="true">
   <ngb-panel id="static-{{i}}" *ngFor="let data of lista; let i=index">
     <ng-template ngbPanelTitle>
-      <span (click)="consultarRaza(data.nombre)"> <b>{{data.nombre}}</b> </span>
+      <span (click)="consultarRaza(data.nombre)"> <b>{{data.nombre | uppercase}}</b> </span>
     </ng-template>
     <ng-template ngbPanelContent>
       <ngb-alert [dismissible]="false" *ngFor="let dataSub of listaSub; let j=index" class="pointer row"
         (click)="seleccionar(dataSub)">
         <div *ngIf="dataSub.imagenes && dataSub.imagenes.length>0"
           class="containers col-xs-2 col-sm-2 col-md-2 col-lg-2 d-flex">
-          <img [src]="dataSub.imagenes[0].url" alt="{{dataSub.nombre}}" class="mx-auto sliders h-100 w-auto">
+          <img [src]="dataSub.imagenes[0].url" alt="{{dataSub.nombre | uppercase}}"
+            class="mx-auto sliders h-100 w-auto">
         </div>
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-left">
-          <strong>{{dataSub.nombre}}</strong>
+          <strong>{{dataSub.nombre | uppercase}}</strong>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           <span class="text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12 float-right text-right">
-            <ngb-rating class="mx-auto" max="1" [readonly]="dataSub.validacion" [(rate)]="dataSub.validacion"
-              (click)="agregarFavoritos(data.nombre,dataSub.nombre)" title="Agregar a Favoritos"></ngb-rating>
+            <ngb-rating *ngIf="dataSub.validacion" class="mx-auto" max="1" [readonly]="dataSub.validacion"
+              [(rate)]="dataSub.validacion" title="Agregar a Favoritos"></ngb-rating>
+            <ngb-rating *ngIf="!dataSub.validacion" class="mx-auto" max="1" [readonly]="dataSub.validacion"
+              [(rate)]="dataSub.validacion" (click)="agregarFavoritos(data.nombre,dataSub.nombre)"
+              title="Agregar a Favoritos"></ngb-rating>
           </span>
         </div>
       </ngb-alert>
