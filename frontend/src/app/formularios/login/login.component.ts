@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationsService } from 'angular2-notifications';
@@ -57,6 +57,9 @@ export class LoginFormComponent implements OnInit {
     this.blockUI.start();
     await this.authenticationService.Authentication(socialusers)
       .then((response: Perfil) => {
+        if (!response.imagenes) {
+          response.imagenes = [];
+        }
         this.mySesion.actualizaPerfil(response);
         if (this.mySesion.validarSesion()) {
           this.mySesion.actualizaPerfil();
