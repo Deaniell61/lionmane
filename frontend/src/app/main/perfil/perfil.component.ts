@@ -5,6 +5,7 @@ import { Favorito, Imagen, ListaBusqueda } from './../../interfaces';
 import { Sesion } from './../../metodos';
 import { ConsultasService } from './../../_services/consultas.service';
 import { FavoritosService } from './../../_services/favoritos.service';
+declare var $: any;
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -131,6 +132,7 @@ export class PerfilComponent implements OnInit {
     this.estaSelec = true;
     if (value.imagenes.length > 0) {
       this.sliders = value.imagenes;
+      $('html, body').animate({ scrollTop: 0 }, '300');
     }
   }
   createSuccess(success) {
