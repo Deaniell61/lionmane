@@ -71,8 +71,6 @@ const storeObject = (request, response, next) => {
           const templateData = {
             "username": item.email + " " + item.username
           };
-          // await emailPackage.sendTemplateEmail(item.email, config.get('/emails/welcome'), templateData);
-          // await sendEm(item.email,item.primerNombre+' '+item.primerApellido, "Congratulations, you are a buyer in LionMane, Your password is: "+request.body.hash+" these credentials will help you enter the platform to start doing business.","Welcome to LionMane");
           response.send(_item);
         }).catch(err => {
           response.send(new _errors.BadGatewayError(err));
@@ -82,59 +80,6 @@ const storeObject = (request, response, next) => {
     .catch(err => {
       if (err.name === 'existRecord') {
         response.send(new _errors.ConflictError(err.message))
-      } else {
-        response.send(new _errors.BadGatewayError(err))
-      }
-    })
-}
-
-const updateObject = (request, response, next) => {
-
-  Usuarios.update({
-    username: request.body.username,
-    email: request.body.email,
-    primerNombre: request.body.primerNombre,
-    segundoNombre: request.body.segundoNombre,
-    primerApellido: request.body.primerApellido,
-    segundoApellido: request.body.segundoApellido,
-    descripcion: request.body.descripcion,
-    dpi: request.body.dpi,
-    nit: request.body.nit,
-    patenteComercio: request.body.patenteComercio,
-    avatar: request.body.avatar,
-    verificacion: request.body.verificacion,
-    facebook: request.body.facebook,
-    linkedin: request.body.linkedin,
-    birthday: request.body.birthday,
-    genre: request.body.genre,
-    twitter: request.body.twitter,
-    google: request.body.google,
-    estado: request.body.estado,
-    telefono: request.body.telefono,
-    MembresiaId: request.body.MembresiaId,
-    PaisId: request.body.PaisId,
-    tipoUsuarioId: request.body.tipoUsuarioId,
-    bisCardId: request.body.bisCardId
-  }, { where: { id: request.params.id } })
-    .then(_id => {
-      return Usuarios.findById(request.params.id)
-    })
-    .then(item => {
-      if (!request.body.bisCardId) {
-        BisCard.update({
-          fechaVencimiento: null,
-          bisCardActiva: false,
-          estado: true
-        }, { where: { id: request.body.bisCardId2 } })
-      }
-      if (item)
-        response.send(item)
-      else
-        return Promise.reject({ name: 'notFound', message: 'Record not Found' })
-    })
-    .catch(err => {
-      if (err.name === 'notFound') {
-        response.send(new _errors.NotFoundError(err.message))
       } else {
         response.send(new _errors.BadGatewayError(err))
       }
@@ -236,7 +181,6 @@ module.exports = {
   all: getAll,
   one: getOne,
   store: storeObject,
-  update: updateObject,
   delete: deleteObject,
   recovery: changePassword,
 }

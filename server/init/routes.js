@@ -16,7 +16,6 @@ routerInstance.put('/recovery/:id', handlers.usuarios.recovery)
  */
 routerInstance.get('/usuarios', handlers.usuarios.all)
 routerInstance.get('/usuarios/:id', handlers.usuarios.one)
-routerInstance.put('/usuarios/:id', handlers.usuarios.update)
 routerInstance.del('/usuarios/:id', handlers.usuarios.delete)
 /**
  * Usuarios
