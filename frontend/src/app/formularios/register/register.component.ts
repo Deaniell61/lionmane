@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
     return false;
   }
   get contraMinima(): boolean {
-    if (this._perfil.hash.length >= 3 && (this._perfil.hash !== this._perfil.hash_rep)) {
+    if (this._perfil.hash.length >= 7 && (this._perfil.hash !== this._perfil.hash_rep)) {
       return false;
     }
     return true;
