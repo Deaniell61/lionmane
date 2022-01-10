@@ -34,7 +34,7 @@ Para poder probar la aplicacion es necesario clonar el repositorio y levantar lo
 ```bash
 > docker-compose up --build
 ```
-Los archivos Dockerfile estan configurados para levantarse en orden de dependencia, en las siguiente rutas [Backend](http://localhost:8000), [Frontend](http://localhost:4200) y [Base de Datos](http://localhost:3306).
+Los archivos Dockerfile estan configurados para levantarse en orden de dependencia, en las siguiente rutas [Backend](http://localhost:8000), [Frontend](http://localhost:4200) y [Base de Datos](http://localhost:33060).
 
 Para visualizar la aplicacion abra la direccion [http://localhost:4200](http://localhost:4200) en su navegador.
 

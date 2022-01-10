@@ -11,7 +11,7 @@ apps:
       "APP_ENV": "production"
       "APP_SECRET": "lionmane2022"
       "DB_HOST": "localhost"
-      "DB_PORT": 3306
+      "DB_PORT": 33060
       "DB_USERNAME": "lionmane"
       "DB_PASSWORD": "a9upR&9Mx+M9pv!7"
       "DB_DATABASE": "dblionmane"
