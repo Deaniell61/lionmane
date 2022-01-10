@@ -1,11 +1,11 @@
 version: "2"
 services:
   frontend:
-    build: ../frontend
+    build: ./frontend
     expose:
-      - 4200
+      - 80
     ports:
-      - "4200:4200"
+      - "4200:80"
     container_name: front-container
     restart: always
   backend:

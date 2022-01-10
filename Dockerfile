@@ -61,9 +61,6 @@ RUN npm install
 
 # Bundle app source
 COPY . .
-COPY server/database/migrate.sh ./server/database/migrate.sh
-RUN cd ./server/database
-RUN cd ../../
 
 EXPOSE 8000
 CMD ["npm", "start"]

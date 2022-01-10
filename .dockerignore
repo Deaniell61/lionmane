@@ -29,7 +29,7 @@ node_modules
 
 server/*.spec.js
 kubernetes
-
+frontend
 .env
 .env.example
 DockerBuild.sh
