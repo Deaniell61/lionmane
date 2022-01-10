@@ -6,7 +6,7 @@ apps:
     watch: true
     env:
       "APP_NAME": "LionMane"
-      "APP_HOST": "0.0.0.0"
+      "APP_HOST": "localhost"
       "APP_PORT": 8080
       "APP_ENV": "production"
       "APP_SECRET": "lionmane2022"

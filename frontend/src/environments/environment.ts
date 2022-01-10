@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http://0.0.0.0:8000',
+  url: 'http://localhost:8000',
   token: 'TOKEN',
   salt: 'base64:vh8QteX+yD8UP0p1EgmCmx5nTdHggwVvo6M0bsdvMfU=',
 };
